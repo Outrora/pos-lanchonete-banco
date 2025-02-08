@@ -1,7 +1,7 @@
 resource "aws_db_instance" "rds" {
   identifier             = "my-postgres-db"
   engine                 = "postgres"
-  instance_class         = "db.t3.micro"
+  instance_class         = "db.t2.micro"
   allocated_storage      = 20
   username               = "admin"
   password               = "yourpassword" # Alterar para uma senha segura
