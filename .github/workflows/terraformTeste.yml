@@ -1,0 +1,42 @@
+name: Terraform Test
+
+on:
+  push:
+    branches:
+      - desenv
+
+  pull_request:
+    branches:
+      - main
+      - desenv
+
+jobs:
+  terraform:
+    name: Apply Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar o Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.6
+
+      - name: Configurar credenciais da AWS
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        run: |
+          echo "Configuração da AWS completa."
+
+      - name: Inicializar o Terraform
+        run: terraform init
+
+      - name: Validar o Terraform
+        run: terraform validate
+
+      - name: Planejar a infraestrutura
+        run: terraform plan
