@@ -67,9 +67,7 @@ jobs:
         run: sudo apt install gh -y
 
       - name: Authenticate GitHub CLI
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: gh auth login --with-token <<< "$GH_TOKEN"
+        run: echo ${{ secrets.GH_PAT }} | gh auth login --with-token
       
       - name: Save as Repository Secret
         run: |
