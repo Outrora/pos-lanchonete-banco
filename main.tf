@@ -1,5 +1,5 @@
 resource "aws_db_instance" "pos-lanchonete" {
-  identifier             = "my-postgres-db"
+  identifier             = "${var.NOME}-db"
   engine                 = "postgres"
   engine_version         = "16.3"
   instance_class         = "db.t3.micro"
@@ -13,6 +13,10 @@ resource "aws_db_instance" "pos-lanchonete" {
 
   # Para o nível gratuito, use armazenamento magnético
   storage_type = "gp2"
+
+  tags = {
+    geral = var.TAGS
+  }
 }
 
 output "rds_endpoint" {

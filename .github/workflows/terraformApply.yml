@@ -50,7 +50,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_EC2_METADATA_DISABLED: "true" 
-        run: terraform plan
+        run: terraform plan -var="TAGS=${{ env.TAGS }}" -var="NOME=${{ env.NOME }}"
 
       - name: Aplicar o Terraform
         env:
@@ -58,7 +58,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_EC2_METADATA_DISABLED: "true" 
-        run: terraform apply -auto-approve
+        run: terraform apply -var="TAGS=${{ env.TAGS }}" -var="NOME=${{ env.NOME }}" -auto-approve
 
       - name: Capture RDS Endpoint
         run: echo "RDS_ENDPOINT=$(terraform output -raw rds_endpoint | awk 'NR==1')" >> $GITHUB_ENV
