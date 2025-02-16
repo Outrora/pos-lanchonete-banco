@@ -35,6 +35,10 @@ jobs:
           echo "Configuração da AWS completa."
 
       - name: Inicializar o Terraform
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         run: terraform init
 
       - name: Validar o Terraform
@@ -64,7 +68,7 @@ jobs:
 
       - name: Authenticate GitHub CLI
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: gh auth login --with-token <<< "$GH_TOKEN"
       
       - name: Save as Repository Secret
