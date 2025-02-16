@@ -5,11 +5,6 @@ on:
     branches:
       - desenv
 
-  pull_request:
-    branches:
-      - main
-      - desenv
-
 jobs:
   terraform:
     name: Test Terraform
