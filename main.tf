@@ -14,3 +14,7 @@ resource "aws_db_instance" "pos-lanchonete" {
   # Para o nível gratuito, use armazenamento magnético
   storage_type = "gp2"
 }
+
+output "rds_endpoint" {
+  value = aws_db_instance.pos-lanchonete.address
+}

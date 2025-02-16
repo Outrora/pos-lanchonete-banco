@@ -38,3 +38,6 @@ jobs:
 
       - name: Aplicar o Terraform
         run: terraform apply -auto-approve
+
+      - name: Capture RDS Endpoint
+        run: echo "RDS_ENDPOINT=$(terraform output -raw rds_endpoint)" >> $GITHUB_ENV
