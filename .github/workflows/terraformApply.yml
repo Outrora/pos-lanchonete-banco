@@ -71,4 +71,4 @@ jobs:
       
       - name: Save as Repository Secret
         run: |
-          gh secret set RDS_ENDPOINT --body "$RDS_ENDPOINT"
+          gh secret set RDS_ENDPOINT --body "$RDS_ENDPOINT" --org Outrora
