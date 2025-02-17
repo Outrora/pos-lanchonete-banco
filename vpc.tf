@@ -16,10 +16,17 @@ module "vpc" {
   # Para o api do kubernetes poder ser acessada pela a AWS -- Nao Confidir com sua propria API
   map_public_ip_on_launch = true
 
+
+
   tags = {
     projeto = var.TAGS
   }
   
 }
 
+
+resource "aws_db_subnet_group" "rds_subnet_group" {
+  name       = "rds_subnet_group"
+  subnet_ids = module.vpc.private_subnets
+}
 
