@@ -15,7 +15,7 @@ resource "aws_db_instance" "pos-lanchonete" {
   storage_type = "gp2"
 
   tags = {
-    geral = var.TAGS
+    projeto = var.TAGS
   }
 }
 
