@@ -16,8 +16,6 @@ module "vpc" {
   # Para o api do kubernetes poder ser acessada pela a AWS -- Nao Confidir com sua propria API
   map_public_ip_on_launch = true
 
-
-
   tags = {
     projeto = var.TAGS
   }
