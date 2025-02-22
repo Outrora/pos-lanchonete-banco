@@ -61,7 +61,14 @@ jobs:
         run: terraform apply -var="TAGS=${{ secrets.TAGS }}" -var="NOME=${{ secrets.NOMEPROJETO }}" -var="senha=${{ secrets.DB_PASSWORD }}" -var="user=${{ secrets.DB_USER }}" -auto-approve
 
       - name: Capture RDS Endpoint
-        run: echo "RDS_ENDPOINT=$(terraform output -raw rds_endpoint | awk 'NR==1')" >> $GITHUB_ENV
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+          AWS_EC2_METADATA_DISABLED: "true" 
+        run: |
+         echo "RDS_ENDPOINT=$(terraform output -raw rds_endpoint | awk 'NR==1')" >> $GITHUB_ENV
+         echo $RDS_ENDPOINT
 
       - name: Install GitHub CLI
         run: sudo apt install gh -y
