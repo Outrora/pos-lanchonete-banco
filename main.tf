@@ -17,6 +17,8 @@ resource "aws_db_instance" "pos-lanchonete" {
   tags = {
     projeto = var.TAGS
   }
+
+  db_name = "${var.NOME}-db"
 }
 
 output "rds_endpoint" {
