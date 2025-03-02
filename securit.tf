@@ -1,5 +1,6 @@
 resource "aws_security_group" "rds_sg" {
   vpc_id = module.vpc.vpc_id
+  name = "${var.NOME}_rds_sg"
 
   ingress {
     from_port   = 5432
