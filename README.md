@@ -1,1 +1,0 @@
-# pos-lanchonete-pos
