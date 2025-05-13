@@ -18,7 +18,7 @@ resource "aws_db_instance" "pos-lanchonete-cozinha" {
     projeto = var.TAGS
   }
 
-  db_name = "${var.NOME}-cozinha"
+  db_name = "cozinha"
 }
 
 resource "aws_db_instance" "pos-lanchonete-cliente" {
@@ -41,7 +41,7 @@ resource "aws_db_instance" "pos-lanchonete-cliente" {
     projeto = var.TAGS
   }
 
-  db_name = "${var.NOME}-cliente"
+  db_name = "cliente"
 }
 
 output "rds_endpoint" {
